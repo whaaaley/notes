@@ -5,7 +5,7 @@
     "start": "make start"
   },
   "dependencies": {
-    "@whaaaley/material-icons-scss": "^2.0.8",
+    "@whaaaley/material-icons-scss": "^2.1.0",
     "hast-to-hyperscript": "^9.0.1",
     "hast-util-from-dom": "^3.0.0",
     "micromark": "^2.11.4",
@@ -13,9 +13,9 @@
   },
   "devDependencies": {
     "clean-css": "^5.1.2",
-    "esbuild": "^0.11.5",
+    "esbuild": "^0.11.6",
     "sass": "^1.32.8",
-    "typescript": "^4.2.3",
+    "typescript": "^4.2.4",
     "uglify-js": "^3.13.3"
   },
   "optionalDependencies": {
