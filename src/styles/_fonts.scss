@@ -1,0 +1,25 @@
+
+//
+// Inter by rsms
+// https://rsms.me/inter/
+//
+
+$font-inter: 'Inter var', sans-serif;
+
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  // font-named-instance: 'Regular';
+  src: url('/fonts/Inter-3.18/Inter-roman.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter var';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  // font-named-instance: 'Italic';
+  src: url('/fonts/Inter-3.18/Inter-italic.var.woff2') format('woff2');
+}

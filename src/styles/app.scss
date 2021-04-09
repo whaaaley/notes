@@ -1,0 +1,29 @@
+
+$scheme: 'data:image/svg+xml;utf8,';
+$spinner: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><style>@keyframes spin%7Bto%7Btransform:rotate(360deg)%7D%7D</style><clipPath id="circle"><circle cx="6" cy="6" r="6"/></clipPath><g clip-path="url(%23circle)"><g style="transform-origin:6px 6px;animation:.75s linear infinite spin"><path fill="%23ffc87b" d="M6 0v-2h8v16H6v-2l-1-1V1z"/><path fill="%2317171b" d="M-2-2h8v16h-8z"/></g><circle cx="6" cy="6" r="5" fill="%2324262a"/></g></svg>';
+
+// .banner {
+//   padding: 12px * 8;
+//   text-align: center;
+//
+//   div {
+//     height: 12px * 8;
+//     background: url($scheme + $valorant-logo) center no-repeat;
+//     background-size: 12px * 48;
+//   }
+//
+//   h1 {
+//     color: $valorant-red;
+//     font: 600 30px/36px sans-serif;
+//     text-transform: uppercase;
+//   }
+//
+//   h2 {
+//     font: 400 18px/36px sans-serif;
+//     opacity: 0.5;
+//   }
+// }
+
+// #app {
+//   padding: 0 0 144px;
+// }

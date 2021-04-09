@@ -1,0 +1,98 @@
+
+// $icon-add: ic-add-24px($white);
+$icon-add: ic-add-note-24px($white);
+$icon-back: ic-arrow-back-ios-new-24px($white);
+
+.editor {
+  display: grid;
+  grid: auto auto 1fr 1fr / 320px 1fr;
+  height: 100vh;
+}
+
+.editor-titlebar {
+  grid-column: span 2;
+  padding: 0 12px 0 48px;
+  color: $dark-500;
+  font: 600 24px/2 $font-inter;
+  letter-spacing: 0 - (1 / 24 * 1em);
+  background: $pastel-yellow url($logo) 12px/24px no-repeat;
+}
+
+.editor-sidebar {
+  grid-row: span 2;
+  background: $dark-450;
+}
+
+.editor-textarea textarea,
+.editor-markdown {
+  padding: 24px;
+}
+
+.editor-head {
+  display: flex;
+  justify-content: space-between;
+  border-right: 1px solid $dark-400;
+  background: $dark-300;
+
+  button {
+    width: 48px;
+    height: 48px;
+    outline: none;
+    background: transparent 12px no-repeat;
+    cursor: pointer;
+
+    &.-ic-add {
+      background-image: url($icon-add);
+    }
+
+    &.-ic-back {
+      background-image: url($icon-back);
+    }
+  }
+
+  h1 {
+    padding: 3px 0 0;
+    font: 600 18px/45px $font-inter;
+  }
+}
+
+// .editor-ribbon {}
+
+.editor-textarea {
+  textarea {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font: 400 16px/24px monospace;
+    background: $dark-400;
+    resize: none;
+  }
+}
+
+.editor-middle {
+  grid-column: 2;
+  background: $pastel-blue;
+}
+
+.editor-markdown {
+  overflow: auto;
+}
+
+// Desktop
+@media (min-width: 1400px) {
+  .editor {
+    grid: auto auto 1fr / 320px 1fr 1fr;
+  }
+
+  .editor-ribbon {
+    grid-column: span 2;
+  }
+
+  .editor-titlebar {
+    grid-column: span 3;
+  }
+
+  .editor-sidebar {
+    grid-row: span 1;
+  }
+}
