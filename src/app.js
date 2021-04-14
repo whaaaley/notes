@@ -5,13 +5,15 @@ import Home from './views/home'
 import Editor from './views/editor'
 // import Missing from './views/missing'
 
-import * as subs from './subscriptions'
-
 app({
   state: {
     activeMenu: '',
     activeNote: 0,
     notes: [
+      {
+        date: Date.now(),
+        markdown: 'The quick brown fox jumped over the lazy dog.'
+      },
       {
         date: Date.now(),
         markdown: '# Note 1!\n\n## hello *world!*\n### hello *world!*\n#### hello *world!*\n##### hello *world!*\n###### hello *world!*\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three'
@@ -33,11 +35,18 @@ app({
     '/': Home,
     '/editor': Editor
     // '/missing': Missing
-  },
-  mount: (state, dispatch) => {
-    subs.gtm({ id: '' })
   }
 })
+
+// let mounted = false
+//
+// window.addEventListener('render', () => {
+//   if (mounted === false) {
+//     // do stuff only once
+//
+//     mounted = true
+//   }
+// })
 
 // Google Tag Manager
 window.dataLayer = window.dataLayer || []

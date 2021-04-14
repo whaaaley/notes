@@ -28,13 +28,17 @@ const enqueue = render => {
  * @function collect
  */
 
+const renderEvent = new CustomEvent('render')
+
 const collect = (state, render) => {
   let batch = [state]
 
   const schedule = enqueue(() => {
     state = Object.assign.apply(Object, batch)
     batch = [state]
+
     render(state)
+    window.dispatchEvent(renderEvent)
   })
 
   return result => {
@@ -123,6 +127,4 @@ export default init => {
 
   window.addEventListener('pushstate', listener)
   window.addEventListener('popstate', listener)
-
-  init.mount(init.state, dispatch)
 }

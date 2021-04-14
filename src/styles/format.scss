@@ -3,8 +3,8 @@ $icon-text-format: ic-text-format-24px($white);
 
 $icon-format-bold: ic-format-bold-24px($white);
 $icon-format-italic: ic-format-italic-24px($white);
+// $icon-format-underline: ic-format-underline-24px($white);
 $icon-format-strikethrough: ic-format-strikethrough-24px($white);
-$icon-format-underline: ic-format-underline-24px($white);
 
 $icon-format-quote: ic-format-quote-24px($white);
 $icon-code: ic-code-24px($white);
@@ -36,9 +36,9 @@ $icon-link: ic-link-24px($white);
       background-image: url($icon-format-italic);
     }
 
-    &.-ic-format-underline {
-      background-image: url($icon-format-underline);
-    }
+    // &.-ic-format-underline {
+    //   background-image: url($icon-format-underline);
+    // }
 
     &.-ic-format-strikethrough {
       background-image: url($icon-format-strikethrough);
