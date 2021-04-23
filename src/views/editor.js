@@ -1,5 +1,5 @@
 
-import { button, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
+import { button, del, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
 import RenderMarkdown from './_renderMarkdown'
 
 let scrollLockFoo = false
@@ -45,6 +45,24 @@ const updateMarkdown = (state, data) => {
   return { notes: state.notes }
 }
 
+const createNote = (state, data) => {
+  const length = state.notes.length
+
+  state.notes.push({
+    date: Date.now(),
+    markdown: '# New Note ' + (length + 1) + '\n## All systems go!'
+  })
+
+  return {
+    activeNote: length,
+    notes: state.notes
+  }
+}
+
+const toggleFormatMenu = (state, data) => {
+  return { activeMenu: state.activeMenu === data ? '' : data }
+}
+
 //
 //
 //
@@ -54,12 +72,13 @@ const Text = (tag, content) => tag([text(content)])
 const Notes = data => {
   const target = []
 
-  for (let i = 0; i < data.notes.length; i++) {
+  for (let i = data.notes.length; i--;) {
     const { markdown } = data.notes[i]
     const newline = markdown.indexOf('\n')
+    const end = newline === -1 ? 128 : newline
 
-    const title = markdown.slice(0, newline)
-    const description = markdown.slice(newline, 128)
+    const title = markdown.slice(0, end)
+    const description = markdown.slice(end, 128)
 
     const classList = i === data.activeIndex
       ? 'notes-item -active'
@@ -108,12 +127,40 @@ const StyleMenu = data => {
   ])
 }
 
+const formatSelection = (delimiter, length) => {
+  const el = document.getElementById('foo')
+
+  const start = el.selectionStart
+  const end = el.selectionEnd
+
+  const text = delimiter + el.value.slice(start, end) + delimiter
+
+  // NOTE: document.execCommand is deprecated
+  // There might be a new way of doing this with content editable
+  document.execCommand('insertText', false, text)
+  el.setSelectionRange(start + length, end + length)
+}
+
 const Format = data => {
   return div({ class: 'format' }, [
-    button({ class: '-ic-format-bold' }),
-    button({ class: '-ic-format-italic' }),
-    button({ class: '-ic-format-underline' }),
-    button({ class: '-ic-format-strikethrough' }),
+    button({
+      class: '-ic-format-bold',
+      onclick: () => {
+        formatSelection('**', 2)
+      }
+    }),
+    button({
+      class: '-ic-format-italic',
+      onclick: () => {
+        formatSelection('_', 1)
+      }
+    }),
+    button({
+      class: '-ic-format-strikethrough',
+      onclick: () => {
+        formatSelection('~~', 2)
+      }
+    }),
     hr(),
     div([
       button({
@@ -134,10 +181,6 @@ const Format = data => {
   ])
 }
 
-const toggleFormatMenu = (state, data) => {
-  return { activeMenu: state.activeMenu === data ? '' : data }
-}
-
 const Editor = (state, dispatch) => {
   const activeMarkdown = state.notes[state.activeNote].markdown
 
@@ -150,7 +193,12 @@ const Editor = (state, dispatch) => {
       h1([
         text('Notes')
       ]),
-      button({ class: '-ic-add' })
+      button({
+        class: '-ic-add',
+        onclick: () => {
+          dispatch(createNote)
+        }
+      })
     ]),
     div({ class: 'editor-ribbon' }, [
       Format({

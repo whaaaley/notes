@@ -4,13 +4,34 @@
     "stylelint-order"
   ],
   "rules": {
+    "selector-list-comma-newline-after": "never-multi-line",
+    "selector-list-comma-space-after": "always",
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "blockless-after-same-name-blockless",
+          "first-nested"
+        ],
+        "ignoreAtRules": [
+          "import",
+          "use"
+        ]
+      }
+    ],
     "at-rule-no-unknown": [
       true,
       {
         "ignoreAtRules": [
+          "debug",
+          "else",
           "extend",
           "function",
-          "return"
+          "if",
+          "import",
+          "return",
+          "use",
+          "while"
         ]
       }
     ],
@@ -42,6 +63,7 @@
       "order",
 
       "grid-area",
+      "grid-column",
 
       "display",
       "visibility",
@@ -65,7 +87,6 @@
       "grid-auto-flow",
       "grid-auto-rows",
       "grid-before",
-      "grid-column",
       "grid-column-end",
       "grid-column-gap",
       "grid-column-start",
