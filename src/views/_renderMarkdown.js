@@ -1,17 +1,9 @@
 
-// NOTE: I would be poggers if someone made an HTML to vdom parser. I tried my
-// best to find something that seemed reliable.
-
-// NOTE: An alternative solution would be to walk the markdown AST and convert
-// it to Superfine nodes manually. I have to style all the data types anyway.
-
-import micromark from 'micromark'
-import fromDom from 'hast-util-from-dom'
-import toHyperscript from 'hast-to-hyperscript'
-
 import { h, text } from '../lib/vnodes/h'
 
-const parser = new DOMParser()
+import fromMarkdown from 'mdast-util-from-markdown'
+import toHast from 'mdast-util-to-hast'
+import toHyperscript from 'hast-to-hyperscript'
 
 const hfn = (tag, props, children) => {
   const node = h(tag)(props, children)
@@ -29,6 +21,5 @@ const hfn = (tag, props, children) => {
 }
 
 export default data => {
-  const dom = parser.parseFromString(micromark(data), 'text/html').body
-  return toHyperscript(hfn, fromDom(dom)).children
+  return toHyperscript(hfn, toHast(fromMarkdown(data))).children
 }
