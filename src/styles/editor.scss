@@ -11,11 +11,27 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
 .editor-titlebar {
   grid-column: span 2;
-  padding: 0 12px 0 48px;
+  display: flex;
+  padding: 0 6px 0 48px;
   color: $dark-500;
-  font: 600 24px/2 $font-inter;
   letter-spacing: 0 - (1 / 24 * 1em);
-  background: $pastel-yellow url($logo) 12px/24px no-repeat;
+  background: $primary url('/cache/logo.svg') 12px/30px no-repeat;
+
+  h1 {
+    font: 600 24px/2 $font-inter;
+  }
+
+  div {
+    margin: auto 0 auto auto;
+  }
+
+  button {
+    padding: 0 18px;
+    border-radius: 6px;
+    color: $light-100;
+    font: 14px/36px $font-inter;
+    background: $dark-300;
+  }
 }
 
 .editor-sidebar {
@@ -23,8 +39,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
   background: $dark-450;
 }
 
-.editor-textarea textarea,
-.editor-markdown {
+.editor-textarea textarea, .editor-markdown {
   padding: 24px;
 }
 
@@ -79,6 +94,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 }
 
 // Desktop
+
 @media (min-width: 1400px) {
   .editor {
     grid: auto auto 1fr / 320px 1fr 1fr;

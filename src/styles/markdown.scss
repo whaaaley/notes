@@ -1,0 +1,67 @@
+
+html {
+  font-size: 12px;
+}
+
+.markdown {
+  font: 14px/24px $font-inter;
+  // background-image: linear-gradient(rgba(0, 255, 255, 0.25) 1px, transparent 1px);
+  // background-size: auto 12px;
+
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0 0 1rem;
+  }
+
+  h1 {
+    font: 600 4rem/1 $font-inter;
+  }
+
+  h2 {
+    font: 600 3rem/1 $font-inter;
+  }
+
+  h3 {
+    font: 600 2rem/1 $font-inter;
+  }
+
+  h4, h5, h6 {
+    font: 600 1rem/1 $font-inter;
+  }
+
+  // p {
+  //   font: 14px/12px $font-inter;
+  // }
+
+  ol, ul {
+    padding: 0 0 0 29px;
+  }
+
+  // li {}
+
+  em {
+    font-style: italic;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  pre, code {
+    border-radius: 6px;
+    font-family: monospace;
+    background: $dark-400;
+  }
+
+  code {
+    padding: 3px 6px;
+  }
+
+  pre {
+    padding: 12px 18px;
+
+    code {
+      padding: unset;
+      border-radius: unset;
+    }
+  }
+}

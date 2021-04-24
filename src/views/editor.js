@@ -1,11 +1,11 @@
 
-import { button, del, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
+import { button, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
 import RenderMarkdown from './_renderMarkdown'
 
 let scrollLockFoo = false
 let scrollLockBar = false
 
-const onscrollFoo = (event, target) => {
+const onscrollFoo = event => {
   if (!scrollLockFoo) {
     scrollSync(event.target, document.getElementById('bar'))
   }
@@ -13,7 +13,7 @@ const onscrollFoo = (event, target) => {
   scrollLockFoo = false
 }
 
-const onscrollBar = (event, target) => {
+const onscrollBar = event => {
   if (!scrollLockBar) {
     scrollSync(event.target, document.getElementById('foo'))
   }
@@ -186,7 +186,18 @@ const Editor = (state, dispatch) => {
 
   return div({ class: 'editor' }, [
     div({ class: 'editor-titlebar' }, [
-      text('Onclick Notes')
+      h1([
+        text('Onclick Notes')
+      ]),
+      div([
+        button({
+          onclick: () => {
+            alert('Comming soon...')
+          }
+        }, [
+          text('Login')
+        ])
+      ])
     ]),
     div({ class: 'editor-head' }, [
       button({ class: '-ic-back' }),
@@ -229,7 +240,7 @@ const Editor = (state, dispatch) => {
         }
       })
     ]),
-    div({ id: 'bar', class: 'editor-markdown', onscroll: onscrollBar }, [
+    div({ id: 'bar', class: 'editor-markdown markdown', onscroll: onscrollBar }, [
       div(RenderMarkdown(activeMarkdown))
     ])
   ])

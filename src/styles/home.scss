@@ -5,15 +5,27 @@
 }
 
 .home-main {
+  display: grid;
   margin: auto;
 
   a {
     display: block;
+    margin: 24px auto;
     padding: 0 18px;
     border-radius: 6px;
     outline: none;
     color: $dark-500;
     font: 600 18px/48px $font-inter;
-    background: $pastel-yellow;
+    background: $primary;
   }
+}
+
+.home-logo {
+  $outside: 288px + 36px;
+  $inside: 288px - 36px;
+
+  width: $outside;
+  height: $outside;
+  border-radius: 50%;
+  background: $primary url('/cache/logo.svg') center/$inside no-repeat;
 }

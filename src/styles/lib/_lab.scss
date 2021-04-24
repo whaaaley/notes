@@ -4,7 +4,7 @@
 @use 'sass:list';
 @use 'sass:math';
 
-@function lab-xyz-util($value) {
+@function lab_xyz_util($value) {
   $power: math.pow($value, 3);
 
   @if $power > 0.008856 {
@@ -16,19 +16,19 @@
   }
 }
 
-@function lab-xyz($l, $a, $b) {
+@function lab_xyz($l, $a, $b) {
   $y: ($l + 16) / 116;
   $x: $a / 500 + $y;
   $z: $y - $b / 200;
 
   @return (
-    lab-xyz-util($x) * 95.047,
-    lab-xyz-util($y) * 100,
-    lab-xyz-util($z) * 108.883,
+    lab_xyz_util($x) * 95.047,
+    lab_xyz_util($y) * 100,
+    lab_xyz_util($z) * 108.883,
   );
 }
 
-@function xyz-rgb-util($value) {
+@function xyz_rgb_util($value) {
   @if ($value > 0.0031308) {
     @return 1.055 * (math.pow($value, 1 / 2.4)) - 0.055;
   }
@@ -38,7 +38,7 @@
   }
 }
 
-@function xyz-rgb($x, $y, $z) {
+@function xyz_rgb($x, $y, $z) {
   $x: $x / 100;
   $y: $y / 100;
   $z: $z / 100;
@@ -48,20 +48,20 @@
   $b: $x * 0.0557 + $y * -0.204 + $z * 1.057;
 
   @return (
-    xyz-rgb-util($r) * 255,
-    xyz-rgb-util($g) * 255,
-    xyz-rgb-util($b) * 255
+    xyz_rgb_util($r) * 255,
+    xyz_rgb_util($g) * 255,
+    xyz_rgb_util($b) * 255
   );
 }
 
 @function lab($l, $a, $b) {
-  $xyz: lab-xyz($l, $a, $b);
+  $xyz: lab_xyz($l, $a, $b);
 
   $x: list.nth($xyz, 1);
   $y: list.nth($xyz, 2);
   $z: list.nth($xyz, 3);
 
-  $rgb: xyz-rgb($x, $y, $z);
+  $rgb: xyz_rgb($x, $y, $z);
 
   $r: list.nth($rgb, 1);
   $g: list.nth($rgb, 2);

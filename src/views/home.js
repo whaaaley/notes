@@ -6,6 +6,7 @@ import link from './_link'
 const Home = (state, dispatch) => {
   return div({ class: 'home' }, [
     div({ class: 'home-main' }, [
+      div({ class: 'home-logo' }),
       link({ to: '/editor' }, 'Edit my notes')
     ])
   ])

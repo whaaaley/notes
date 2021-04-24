@@ -8,8 +8,7 @@
   border-radius: 6px;
   cursor: pointer;
 
-  h1,
-  p {
+  h1, p {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -25,6 +24,6 @@
 
   &.-active {
     color: $dark-450;
-    background: $pastel-yellow;
+    background: $primary;
   }
 }
