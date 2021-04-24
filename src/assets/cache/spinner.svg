@@ -1,14 +1,13 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'>
   <style type='text/css'>
+    #spin {
+      transform-origin: 6px 6px;
+      animation: 0.75s linear infinite spin;
+    }
     @keyframes spin {
       100% {
         transform: rotate(360deg);
       }
-    }
-
-    #spin {
-      transform-origin: 6px 6px;
-      animation: 0.75s linear infinite spin;
     }
   </style>
   <clipPath id='circle'>
