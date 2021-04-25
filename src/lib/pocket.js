@@ -127,4 +127,6 @@ export default init => {
 
   window.addEventListener('pushstate', listener)
   window.addEventListener('popstate', listener)
+
+  return dispatch
 }
