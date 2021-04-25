@@ -33,8 +33,6 @@ const toggleFormatMenu = (state, data) => {
 //
 //
 
-const notWhitespace = /\S/g
-
 const Notes = data => {
   const target = []
 
@@ -51,7 +49,7 @@ const Notes = data => {
       title = markdown.slice(0, end)
       description = markdown.slice(end, 128)
 
-      if (!notWhitespace.test(description)) {
+      if (!/\S/g.test(description)) {
         description = '(No additional text)'
       }
     }
@@ -220,7 +218,7 @@ const Editor = (state, dispatch) => {
         }
       })
     ]),
-    div({ class: 'editor-textarea' }, [
+    div({ key: 'textarea', class: 'editor-textarea' }, [
       textarea({
         ref: foo,
         value: activeMarkdown,
@@ -234,6 +232,7 @@ const Editor = (state, dispatch) => {
       })
     ]),
     div({
+      key: 'markdown',
       ref: bar,
       class: 'editor-markdown markdown',
       onscroll: event => {
