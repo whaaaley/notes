@@ -169,13 +169,13 @@ const Editor = (state, dispatch) => {
         text('Onclick Notes')
       ]),
       div([
-        button({
-          onclick: () => {
-            alert('Comming soon...')
-          }
-        }, [
-          text('Login')
-        ])
+        // button({
+        //   onclick: () => {
+        //     alert('Comming soon...')
+        //   }
+        // }, [
+        //   text('Login')
+        // ])
       ])
     ]),
     div({ class: 'editor-head' }, [
