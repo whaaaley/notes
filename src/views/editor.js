@@ -5,22 +5,6 @@ import RenderMarkdown from './_renderMarkdown'
 let scrollLockFoo = false
 let scrollLockBar = false
 
-const onscrollFoo = event => {
-  if (!scrollLockFoo) {
-    scrollSync(event.target, document.getElementById('bar'))
-  }
-
-  scrollLockFoo = false
-}
-
-const onscrollBar = event => {
-  if (!scrollLockBar) {
-    scrollSync(event.target, document.getElementById('foo'))
-  }
-
-  scrollLockBar = false
-}
-
 const getWidth = el => el.scrollWidth - el.clientWidth
 const getHeight = el => el.scrollHeight - el.clientHeight
 
@@ -174,7 +158,6 @@ const Format = data => {
       })
     ]),
     hr(),
-
     button({ class: '-ic-format-quote' }),
     button({ class: '-ic-code' }),
     button({ class: '-ic-link' })
@@ -182,6 +165,9 @@ const Format = data => {
 }
 
 const Editor = (state, dispatch) => {
+  const foo = { current: null }
+  const bar = { current: null }
+
   const activeMarkdown = state.notes[state.activeNote].markdown
 
   return div({ class: 'editor' }, [
@@ -232,15 +218,25 @@ const Editor = (state, dispatch) => {
     ]),
     div({ class: 'editor-textarea' }, [
       textarea({
-        id: 'foo',
+        ref: foo,
         value: activeMarkdown,
-        onscroll: onscrollFoo,
+        onscroll: event => {
+          !scrollLockFoo && scrollSync(event.target, bar.current)
+          scrollLockFoo = false
+        },
         oninput: event => {
           dispatch(updateMarkdown, event.target.value)
         }
       })
     ]),
-    div({ id: 'bar', class: 'editor-markdown markdown', onscroll: onscrollBar }, [
+    div({
+      ref: bar,
+      class: 'editor-markdown markdown',
+      onscroll: event => {
+        !scrollLockBar && scrollSync(event.target, foo.current)
+        scrollLockBar = false
+      }
+    }, [
       div(RenderMarkdown(activeMarkdown))
     ])
   ])
