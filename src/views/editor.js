@@ -177,7 +177,8 @@ const Editor = (state, dispatch) => {
       ])
     ]),
     div({ class: 'editor-head' }, [
-      button({ class: '-ic-back' }),
+      // button({ class: '-ic-back' }),
+      div(),
       h1([
         text('Notes')
       ]),
@@ -208,7 +209,15 @@ const Editor = (state, dispatch) => {
         onRemove: index => {
           dispatch(notes.remove, index)
         }
-      })
+      }),
+      div({ class: 'editor-footer' }, [
+        h1([
+          text('© Dustin Dowell, 2021')
+        ]),
+        p([
+          text('By using this site you agree to our\nTerms of Use and Privacy Policy.')
+        ])
+      ])
     ]),
     div({ class: 'editor-textarea' }, [
       textarea({
