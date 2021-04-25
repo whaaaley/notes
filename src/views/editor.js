@@ -249,7 +249,9 @@ const Editor = (state, dispatch) => {
         scrollLockBar = false
       }
     }, [
-      div(RenderMarkdown(activeMarkdown))
+      div([
+        RenderMarkdown(activeMarkdown)
+      ])
     ])
   ])
 }

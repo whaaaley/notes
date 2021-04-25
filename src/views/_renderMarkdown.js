@@ -21,5 +21,5 @@ const hfn = (tag, props, children) => {
 }
 
 export default data => {
-  return toHyperscript(hfn, toHast(fromMarkdown(data))).children
+  return toHyperscript(hfn, toHast(fromMarkdown(data)))
 }
