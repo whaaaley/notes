@@ -1,5 +1,5 @@
 
-import { patch } from 'superfine'
+import { patch } from './superfine'
 import { decode } from './routerLib'
 
 /**
