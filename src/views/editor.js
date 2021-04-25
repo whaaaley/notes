@@ -1,6 +1,7 @@
 
 import { button, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
 import RenderMarkdown from './_renderMarkdown'
+import * as notes from '../actions/notes'
 
 let scrollLockFoo = false
 let scrollLockBar = false
@@ -24,25 +25,6 @@ const scrollSync = (source, target) => {
 //
 //
 
-const updateMarkdown = (state, data) => {
-  state.notes[state.activeNote].markdown = data
-  return { notes: state.notes }
-}
-
-const createNote = (state, data) => {
-  const length = state.notes.length
-
-  state.notes.push({
-    date: Date.now(),
-    markdown: '# New Note ' + (length + 1) + '\n## All systems go!'
-  })
-
-  return {
-    activeNote: length,
-    notes: state.notes
-  }
-}
-
 const toggleFormatMenu = (state, data) => {
   return { activeMenu: state.activeMenu === data ? '' : data }
 }
@@ -51,31 +33,50 @@ const toggleFormatMenu = (state, data) => {
 //
 //
 
-const Text = (tag, content) => tag([text(content)])
+const notWhitespace = /\S/g
 
 const Notes = data => {
   const target = []
 
   for (let i = data.notes.length; i--;) {
     const { markdown } = data.notes[i]
-    const newline = markdown.indexOf('\n')
-    const end = newline === -1 ? 128 : newline
 
-    const title = markdown.slice(0, end)
-    const description = markdown.slice(end, 128)
+    let title = 'New Note'
+    let description = '(This note is empty)'
+
+    if (markdown.length) {
+      const newline = markdown.indexOf('\n')
+      const end = newline === -1 ? 128 : newline
+
+      title = markdown.slice(0, end)
+      description = markdown.slice(end, 128)
+
+      if (!notWhitespace.test(description)) {
+        description = '(No additional text)'
+      }
+    }
 
     const classList = i === data.activeIndex
       ? 'notes-item -active'
       : 'notes-item'
 
-    const child = div({
+    const child = button({
       class: classList,
       onclick: () => {
-        data.onclick(i)
+        data.onClick(i)
+      },
+      onkeydown: event => {
+        if (event.code === 'Backspace' || event.code === 'Delete') {
+          data.onRemove(i)
+        }
       }
     }, [
-      Text(h1, title),
-      Text(p, description)
+      h1([
+        text(title)
+      ]),
+      p([
+        text(description)
+      ])
     ])
 
     target.push(child)
@@ -193,7 +194,7 @@ const Editor = (state, dispatch) => {
       button({
         class: '-ic-add',
         onclick: () => {
-          dispatch(createNote)
+          dispatch(notes.create)
         }
       })
     ]),
@@ -209,10 +210,13 @@ const Editor = (state, dispatch) => {
       Notes({
         notes: state.notes,
         activeIndex: state.activeNote,
-        onclick: index => {
+        onClick: index => {
           dispatch(() => {
             return { activeNote: index }
           })
+        },
+        onRemove: index => {
+          dispatch(notes.remove, index)
         }
       })
     ]),
@@ -225,7 +229,7 @@ const Editor = (state, dispatch) => {
           scrollLockFoo = false
         },
         oninput: event => {
-          dispatch(updateMarkdown, event.target.value)
+          dispatch(notes.update, event.target.value)
         }
       })
     ]),
