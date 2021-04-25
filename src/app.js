@@ -3,7 +3,7 @@ import app from './lib/pocket'
 
 import Home from './views/home'
 import Editor from './views/editor'
-// import Missing from './views/missing'
+import Missing from './views/missing'
 
 app({
   state: {
@@ -33,8 +33,8 @@ app({
   },
   pages: {
     '/': Home,
-    '/editor': Editor
-    // '/missing': Missing
+    '/editor': Editor,
+    '/missing': Missing
   }
 })
 
