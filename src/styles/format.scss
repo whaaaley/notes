@@ -1,14 +1,15 @@
 
-$icon-text-format: ic-text-format-24px($white);
-
 $icon-format-bold: ic-format-bold-24px($white);
 $icon-format-italic: ic-format-italic-24px($white);
-// $icon-format-underline: ic-format-underline-24px($white);
-$icon-format-strikethrough: ic-format-strikethrough-24px($white);
 
-$icon-format-quote: ic-format-quote-24px($white);
-$icon-code: ic-code-24px($white);
-$icon-link: ic-link-24px($white);
+// $icon-format-underline: ic-format-underline-24px($white);
+// $icon-format-strikethrough: ic-format-strikethrough-24px($white);
+
+// $icon-text-format: ic-text-format-24px($white);
+
+// $icon-format-quote: ic-format-quote-24px($white);
+// $icon-code: ic-code-24px($white);
+// $icon-link: ic-link-24px($white);
 
 .format {
   display: flex;
@@ -22,12 +23,6 @@ $icon-link: ic-link-24px($white);
     background: transparent 12px no-repeat;
     cursor: pointer;
 
-    &.-ic-text-format {
-      background-image: url($icon-text-format);
-    }
-
-    //
-
     &.-ic-format-bold {
       background-image: url($icon-format-bold);
     }
@@ -36,27 +31,29 @@ $icon-link: ic-link-24px($white);
       background-image: url($icon-format-italic);
     }
 
+    // &.-ic-text-format {
+    //   background-image: url($icon-text-format);
+    // }
+
     // &.-ic-format-underline {
     //   background-image: url($icon-format-underline);
     // }
 
-    &.-ic-format-strikethrough {
-      background-image: url($icon-format-strikethrough);
-    }
+    // &.-ic-format-strikethrough {
+    //   background-image: url($icon-format-strikethrough);
+    // }
 
-    //
+    // &.-ic-format-quote {
+    //   background-image: url($icon-format-quote);
+    // }
 
-    &.-ic-format-quote {
-      background-image: url($icon-format-quote);
-    }
+    // &.-ic-code {
+    //   background-image: url($icon-code);
+    // }
 
-    &.-ic-code {
-      background-image: url($icon-code);
-    }
-
-    &.-ic-link {
-      background-image: url($icon-link);
-    }
+    // &.-ic-link {
+    //   background-image: url($icon-link);
+    // }
   }
 
   hr {

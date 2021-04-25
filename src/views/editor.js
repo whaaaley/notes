@@ -129,29 +129,29 @@ const Format = data => {
       onclick: () => {
         formatSelection('_', 1)
       }
-    }),
-    button({
-      class: '-ic-format-strikethrough',
-      onclick: () => {
-        formatSelection('~~', 2)
-      }
-    }),
-    hr(),
-    div([
-      button({
-        class: '-ic-text-format',
-        onclick: () => {
-          data.onToggle('style')
-        }
-      }),
-      StyleMenu({
-        active: data.activeMenu === 'style'
-      })
-    ]),
-    hr(),
-    button({ class: '-ic-format-quote' }),
-    button({ class: '-ic-code' }),
-    button({ class: '-ic-link' })
+    })
+    // button({
+    //   class: '-ic-format-strikethrough',
+    //   onclick: () => {
+    //     formatSelection('~~', 2)
+    //   }
+    // }),
+    // hr(),
+    // div([
+    //   button({
+    //     class: '-ic-text-format',
+    //     onclick: () => {
+    //       data.onToggle('style')
+    //     }
+    //   }),
+    //   StyleMenu({
+    //     active: data.activeMenu === 'style'
+    //   })
+    // ]),
+    // hr(),
+    // button({ class: '-ic-format-quote' }),
+    // button({ class: '-ic-code' }),
+    // button({ class: '-ic-link' })
   ])
 }
 
