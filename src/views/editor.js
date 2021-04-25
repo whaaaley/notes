@@ -1,5 +1,6 @@
 
-import { button, div, h1, hr, p, text, textarea } from '../lib/vnodes/html'
+import { button, div, h1, p, text, textarea } from '../lib/vnodes/html'
+import Link from './_link'
 import RenderMarkdown from './_renderMarkdown'
 import * as notes from '../actions/notes'
 
@@ -163,6 +164,7 @@ const Editor = (state, dispatch) => {
 
   return div({ class: 'editor' }, [
     div({ class: 'editor-titlebar' }, [
+      Link({ to: '/' }),
       h1([
         text('Onclick Notes')
       ]),

@@ -10,7 +10,6 @@
 
   a {
     display: block;
-    margin: 24px auto;
     padding: 0 18px;
     border-radius: 6px;
     outline: none;
@@ -20,12 +19,14 @@
   }
 }
 
-.home-logo {
-  $outside: 288px + 36px;
-  $inside: 288px - 36px;
+.home-logo, .home-main a {
+  margin: 12px auto;
+}
 
-  width: $outside;
-  height: $outside;
-  border-radius: 50%;
-  background: $primary url('/cache/logo.svg') center/$inside no-repeat;
+.home-logo {
+  $size: 288px - 144px;
+
+  width: $size;
+  height: $size;
+  background: url('/cache/logo.svg') center/$size no-repeat;
 }

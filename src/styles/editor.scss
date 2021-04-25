@@ -4,20 +4,24 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
 .editor {
   display: grid;
-  grid: auto auto 1fr 1fr / 320px 1fr;
+  grid: 48px auto 1fr 1fr / 320px 1fr;
   height: 100vh;
 }
 
 .editor-titlebar {
   grid-column: span 2;
   display: flex;
-  padding: 0 6px 0 48px;
   color: $dark-500;
   letter-spacing: 0 - (1 / 24 * 1em);
-  background: $primary url('/cache/logo.svg') 12px/30px no-repeat;
+  background: $primary;
+
+  a {
+    background: $dark-450 url('/cache/logo.svg') center/24px no-repeat;
+  }
 
   h1 {
-    font: 600 24px/2 $font-inter;
+    padding: 0 12px;
+    font: 600 21px/48px $font-inter;
   }
 
   div {
@@ -115,7 +119,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
 @media (min-width: 1400px) {
   .editor {
-    grid: auto auto 1fr / 320px 1fr 1fr;
+    grid: 48px auto 1fr / 320px 1fr 1fr;
   }
 
   .editor-ribbon {

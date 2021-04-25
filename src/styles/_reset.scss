@@ -1,33 +1,32 @@
 
-// 1. NOTE: (iOS Safari) Enable momentum scrolling on overflow elements
-// 2. NOTE: (WebKit/Blink) (Non-standard) Scrollbars overlay content
-// 3. NOTE: (Mobile devices) Prevent font-size scaling
-// 4. NOTE: (Touch devices) Prevent tap delay
+/**
+ * 1. (iOS Safari) Enable momentum scrolling on overflow elements
+*/
 
 *:not(svg *) {
   position: relative;
-  //
   margin: 0;
   padding: 0;
   border: 0;
-  //
   color: inherit;
   font: inherit;
   text-align: inherit;
   text-decoration: inherit;
-  //
-  -webkit-overflow-scrolling: touch; // 1
+  -webkit-overflow-scrolling: touch; // 1.
 
   &, &::after, &::before {
     box-sizing: inherit;
   }
 }
 
+/**
+ * 1. (WebKit/Blink) (Non-standard) Scrollbars overlay content
+ * 2. (Touch devices) Prevent tap delay
+*/
+
 html {
-  overflow: overlay; // 2
-  // -webkit-text-size-adjust: none; // 3
-  // text-size-adjust: none; // 3
-  touch-action: manipulation; // 4
+  overflow: overlay; // 1.
+  touch-action: manipulation; // 2.
   box-sizing: border-box;
 }
 
@@ -36,6 +35,10 @@ body {
   font: 400 1em/1 $font-inter;
   background: $dark-500;
 }
+
+/**
+ * Pseudo Elements
+*/
 
 ::placeholder {
   color: $dark-100;
@@ -57,9 +60,11 @@ body {
   box-shadow: inset 0 0 0 4px $primary;
 }
 
-// NOTE: This sets the maximum site width when using this viewport meta tag.
-// Mobile devices will downscale from this size.
-// <meta name="viewport" content="width=device-width,maximum-scale=1">
+/**
+ * NOTE: This sets the maximum site width when using this viewport meta tag.
+ * Mobile devices will scale down from this size.
+ * <meta name="viewport" content="width=device-width,maximum-scale=5">
+*/
 
 @media (max-width: 375px) {
   body {
