@@ -21,17 +21,9 @@ const scrollSync = (source, target) => {
   })
 }
 
-//
-//
-//
-
 const toggleFormatMenu = (state, data) => {
   return { activeMenu: state.activeMenu === data ? '' : data }
 }
-
-//
-//
-//
 
 const Notes = data => {
   const target = []
@@ -218,9 +210,11 @@ const Editor = (state, dispatch) => {
         }
       })
     ]),
-    div({ key: 'textarea', class: 'editor-textarea' }, [
+    div({ class: 'editor-textarea' }, [
       textarea({
+        id: 'foo',
         ref: foo,
+        key: 'textarea',
         value: activeMarkdown,
         onscroll: event => {
           !scrollLockFoo && scrollSync(event.target, bar.current)
@@ -232,8 +226,9 @@ const Editor = (state, dispatch) => {
       })
     ]),
     div({
-      key: 'markdown',
+      id: 'bar',
       ref: bar,
+      key: 'markdown',
       class: 'editor-markdown markdown',
       onscroll: event => {
         !scrollLockBar && scrollSync(event.target, foo.current)
