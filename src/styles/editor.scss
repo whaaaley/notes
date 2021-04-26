@@ -45,7 +45,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 .editor-sidebar {
   grid-row: span 2;
   display: grid;
-  grid: 1fr/auto;
+  grid: 1fr/100%;
   background: $dark-450;
 }
 
