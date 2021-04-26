@@ -169,6 +169,7 @@ const Editor = (state, dispatch) => {
 
   const activeMarkdown = state.notes[state.activeNote].markdown
   const compressedMarkdown = String.fromCharCode.apply(null, pako.deflate(activeMarkdown))
+  const copyLink = location.origin + '/' + btoa(compressedMarkdown)
 
   return div({ class: 'editor' }, [
     div({ class: 'editor-titlebar' }, [
@@ -260,13 +261,13 @@ const Editor = (state, dispatch) => {
       div({ class: 'editor-address' }, [
         input({
           type: 'text',
-          value: window.location.origin + '/' + window.btoa(compressedMarkdown)
+          value: copyLink
         }),
         button({
           onclick: () => {
             // returns a promise
             // TODO: make a div to show text has been copied
-            navigator.clipboard.writeText(window.location.origin + '/' + window.btoa(compressedMarkdown))
+            navigator.clipboard.writeText(copyLink)
           }
         }, [
           text('Copy Link')

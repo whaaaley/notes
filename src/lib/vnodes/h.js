@@ -1,22 +1,26 @@
 
+import { createVNode, text as virtualTextNode } from '../superfine'
 import { renderNode, renderTextNode } from '../static/render'
 
 const EMPTY_ARR = []
 const EMPTY_OBJ = {}
 
-const virtualNode = (tag, props, children) => ({
-  tag,
-  props,
-  key: props.key,
-  children: children == null ? EMPTY_ARR : children
-})
+const virtualNode = (tag, props, children) =>
+  createVNode(tag, props, children == null ? EMPTY_ARR : children)
 
-const virtualTextNode = value => ({
-  tag: value,
-  props: EMPTY_OBJ,
-  children: EMPTY_ARR,
-  type: 3
-})
+// const virtualNode = (tag, props, children) => ({
+//   tag,
+//   props,
+//   key: props.key,
+//   children: children == null ? EMPTY_ARR : children
+// })
+
+// const virtualTextNode = value => ({
+//   tag: value,
+//   props: EMPTY_OBJ,
+//   children: EMPTY_ARR,
+//   type: 3
+// })
 
 const node = STATIC ? renderNode : virtualNode
 const text = STATIC ? renderTextNode : virtualTextNode

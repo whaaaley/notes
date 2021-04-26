@@ -43,8 +43,6 @@ const patchProperty = (node, key, oldValue, newValue, isSvg) => {
     return // exit
   }
 
-  // <!-- refactored until here -->
-
   if (!isSvg && key !== 'list' && key !== 'form' && key in node) {
     node[key] = newValue == null ? '' : newValue
   } else if (newValue == null || newValue === false) {
@@ -257,7 +255,7 @@ const recycleNode = node =>
       node
     )
 
-const createVNode = (tag, props, children, type, node) => ({
+export const createVNode = (tag, props, children, type, node) => ({
   tag,
   props,
   key: props.key,
@@ -268,9 +266,6 @@ const createVNode = (tag, props, children, type, node) => ({
 
 export const text = (value, node) =>
   createVNode(value, EMPTY_OBJ, EMPTY_ARR, TEXT_NODE, node)
-
-export const h = (tag, props, children = EMPTY_ARR) =>
-  createVNode(tag, props, Array.isArray(children) ? children : [children])
 
 export const patch = (node, vdom) => (
   ((node = patchNode(
