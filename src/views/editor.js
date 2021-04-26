@@ -76,32 +76,32 @@ const Notes = data => {
   return div({ class: 'notes' }, target)
 }
 
-const StyleMenu = data => {
-  const classList = data.active
-    ? 'format-dropdown -open'
-    : 'format-dropdown -close'
-
-  return div({ class: classList }, [
-    button({ class: '-title' }, [
-      text('Title')
-    ]),
-    button({ class: '-heading' }, [
-      text('Heading')
-    ]),
-    button({ class: '-subheading' }, [
-      text('Subheading')
-    ]),
-    button({ class: '-body' }, [
-      text('Body')
-    ]),
-    button({ class: '-ordered-list' }, [
-      text('1. Ordered List')
-    ]),
-    button({ class: '-unordered-list' }, [
-      text('• Unordered List')
-    ])
-  ])
-}
+// const StyleMenu = data => {
+//   const classList = data.active
+//     ? 'format-dropdown -open'
+//     : 'format-dropdown -close'
+//
+//   return div({ class: classList }, [
+//     button({ class: '-title' }, [
+//       text('Title')
+//     ]),
+//     button({ class: '-heading' }, [
+//       text('Heading')
+//     ]),
+//     button({ class: '-subheading' }, [
+//       text('Subheading')
+//     ]),
+//     button({ class: '-body' }, [
+//       text('Body')
+//     ]),
+//     button({ class: '-ordered-list' }, [
+//       text('1. Ordered List')
+//     ]),
+//     button({ class: '-unordered-list' }, [
+//       text('• Unordered List')
+//     ])
+//   ])
+// }
 
 const formatSelection = (delimiter, length) => {
   const el = document.getElementById('foo')
