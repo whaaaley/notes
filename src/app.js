@@ -39,6 +39,9 @@ const dispatch = app({
       year: new Date().getFullYear()
     }
   },
+  rewrites: [
+    { source: /[a-zA-Z0-9+/]*={0,3}$/, destination: '/file' }
+  ],
   pages: {
     '/': Home,
     '/editor': Editor,

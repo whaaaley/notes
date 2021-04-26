@@ -83,11 +83,30 @@ const pocket = (state, render) => {
  * @function sync
  */
 
-const sync = state => {
+const sync = (state, init) => {
+  const pathname = location.pathname
   const search = location.search
+
+  const pages = init.pages
+  const rewrites = init.rewrites
 
   if (search.startsWith('?')) {
     state.router.query = decode(search)
+  }
+
+  if (pages.includes(pathname)) {
+    // empty
+  } else {
+    for (let i = 0; i < rewrites.length; i++) {
+      const result = pathname.match(rewrites[i].source)
+
+      if (result != null) {
+        state.router.id = result[0]
+        state.router.to = rewrites[i].destination
+
+        return { router: state.router }
+      }
+    }
   }
 
   state.router.to = location.pathname
@@ -114,7 +133,10 @@ export default init => {
   })
 
   const listener = () => {
-    dispatch(sync)
+    dispatch(sync, {
+      pages: Object.keys(init.pages),
+      rewrites: init.rewrites
+    })
 
     route = init.pages[init.state.router.to] || init.pages['/missing']
 

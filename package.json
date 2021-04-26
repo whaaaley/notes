@@ -9,6 +9,7 @@
     "hast-to-hyperscript": "^9.0.1",
     "mdast-util-from-markdown": "^0.8.5",
     "mdast-util-to-hast": "^10.2.0",
+    "pako": "^2.0.3",
     "superfine": "^8.2.0"
   },
   "devDependencies": {

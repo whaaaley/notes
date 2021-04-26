@@ -1,8 +1,15 @@
 
-import { button, div, h1, p, span, text, textarea } from '../lib/vnodes/html'
+import pako from 'pako'
+import { button, div, h1, input, p, span, text, textarea } from '../lib/vnodes/html'
+
+import * as notes from '../actions/notes'
+
 import Link from './_link'
 import RenderMarkdown from './_renderMarkdown'
-import * as notes from '../actions/notes'
+
+//
+//
+//
 
 let scrollLockFoo = false
 let scrollLockBar = false
@@ -161,6 +168,7 @@ const Editor = (state, dispatch) => {
   const bar = { current: null }
 
   const activeMarkdown = state.notes[state.activeNote].markdown
+  const compressedMarkdown = String.fromCharCode.apply(null, pako.deflate(activeMarkdown))
 
   return div({ class: 'editor' }, [
     div({ class: 'editor-titlebar' }, [
@@ -249,6 +257,10 @@ const Editor = (state, dispatch) => {
         scrollLockBar = false
       }
     }, [
+      input({
+        type: 'text',
+        value: window.location.origin + '/' + window.btoa(compressedMarkdown)
+      }),
       div([
         RenderMarkdown(activeMarkdown)
       ])
