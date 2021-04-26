@@ -251,7 +251,7 @@ const Editor = (state, dispatch) => {
       id: 'bar',
       ref: bar,
       key: 'markdown',
-      class: 'editor-markdown markdown',
+      class: 'editor-markdown',
       onscroll: event => {
         !scrollLockBar && scrollSync(event.target, foo.current)
         scrollLockBar = false
@@ -261,7 +261,7 @@ const Editor = (state, dispatch) => {
         type: 'text',
         value: window.location.origin + '/' + window.btoa(compressedMarkdown)
       }),
-      div([
+      div({ class: 'markdown' }, [
         RenderMarkdown(activeMarkdown)
       ])
     ])
