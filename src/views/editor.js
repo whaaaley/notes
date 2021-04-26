@@ -257,10 +257,21 @@ const Editor = (state, dispatch) => {
         scrollLockBar = false
       }
     }, [
-      input({
-        type: 'text',
-        value: window.location.origin + '/' + window.btoa(compressedMarkdown)
-      }),
+      div({ class: 'editor-address' }, [
+        input({
+          type: 'text',
+          value: window.location.origin + '/' + window.btoa(compressedMarkdown)
+        }),
+        button({
+          onclick: () => {
+            // returns a promise
+            // TODO: make a div to show text has been copied
+            navigator.clipboard.writeText(window.location.origin + '/' + window.btoa(compressedMarkdown))
+          }
+        }, [
+          text('Copy Link')
+        ])
+      ]),
       div({ class: 'markdown' }, [
         RenderMarkdown(activeMarkdown)
       ])
