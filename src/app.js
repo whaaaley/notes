@@ -6,25 +6,6 @@ import Home from './views/home'
 import Editor from './views/editor'
 import Missing from './views/missing'
 
-// const testNotes = [
-//   {
-//     date: Date.now(),
-//     markdown: 'The quick brown fox jumped over the lazy dog.\n\n```\nbig code block\n```'
-//   },
-//   {
-//     date: Date.now(),
-//     markdown: '# hello *world!*\n\n## hello *world!*\n### hello *world!*\n#### hello *world!*\n##### hello *world!*\n###### hello *world!*\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three\n\n+ one\n+ two\n+ three'
-//   },
-//   {
-//     date: Date.now(),
-//     markdown: '# My Fruit List\n\n## This is a list of fruit!\n\n+ Apple\n+ Banana\n+ Orange\n+ Grape'
-//   },
-//   {
-//     date: Date.now(),
-//     markdown: '# Note 3\n## hello *world!*'
-//   }
-// ]
-
 const dispatch = app({
   state: {
     activeMenu: '',
