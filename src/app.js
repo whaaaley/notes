@@ -5,6 +5,7 @@ import * as notes from './actions/notes'
 import Home from './views/home'
 import Editor from './views/editor'
 import Missing from './views/missing'
+import Note from './views/note'
 
 const dispatch = app({
   state: {
@@ -20,13 +21,11 @@ const dispatch = app({
       year: new Date().getFullYear()
     }
   },
-  rewrites: [
-    { source: /[a-zA-Z0-9+/]*={0,3}$/, destination: '/file' }
-  ],
   pages: {
     '/': Home,
     '/editor': Editor,
-    '/missing': Missing
+    '/missing': Missing,
+    '/note': Note
   }
 })
 

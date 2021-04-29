@@ -1,0 +1,17 @@
+
+.note {
+  display: flex;
+  height: 100vh;
+
+  &,
+  > div {
+    padding: 36px;
+  }
+
+  > div {
+    max-width: 960px;
+    margin: auto;
+    border-radius: 12px;
+    background: $dark-400;
+  }
+}

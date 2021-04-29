@@ -1,7 +1,7 @@
 
-import pako from 'pako'
-import { button, div, h1, input, p, span, text, textarea } from '../lib/vnodes/html'
+import { button, div, h1, p, span, text, textarea } from '../lib/vnodes/html'
 
+import * as urlSafeCompress from '../util/urlSafeCompress'
 import * as notes from '../actions/notes'
 
 import Link from './_link'
@@ -174,8 +174,7 @@ const Editor = (state, dispatch) => {
   const bar = { current: null }
 
   const activeMarkdown = state.notes[state.activeNote].markdown
-  const compressedMarkdown = String.fromCharCode.apply(null, pako.deflate(activeMarkdown))
-  const copyLink = location.origin + '/' + btoa(compressedMarkdown)
+  const copyLink = location.origin + '/note?data=' + urlSafeCompress.zip(activeMarkdown)
 
   return div({ class: 'editor' }, [
     div({ class: 'editor-titlebar' }, [
@@ -259,44 +258,29 @@ const Editor = (state, dispatch) => {
         id: 'bar',
         ref: bar,
         key: 'markdown',
-        class: 'editor-markdown',
+        class: 'editor-markdown markdown',
         onscroll: event => {
           !scrollLockBar && scrollSync(event.target, foo.current)
           scrollLockBar = false
         }
       }, [
-        // div({ class: 'editor-address' }, [
-        //   input({
-        //     type: 'text',
-        //     value: copyLink
-        //   }),
-        //   button({
-        //     onclick: () => {
-        //       // returns a promise
-        //       // TODO: make a div to show text has been copied
-        //       navigator.clipboard.writeText(copyLink)
-        //     }
-        //   }, [
-        //     text('Copy Link')
-        //   ])
-        // ]),
-        div({ class: 'markdown' }, [
-          RenderMarkdown(activeMarkdown)
-        ])
+        RenderMarkdown(activeMarkdown)
       ])
     ]),
     div({ class: 'editor-status' }, [
-      // div([
-      //   text('Ln 281, Col 24')
-      // ]),
+      (() => {
+        const limit = copyLink.length > 2048
+        if (limit) {
+          return div({ class: '-red' }, [
+            text('Note is too large to share.')
+          ])
+        }
+      })(),
       div([
-        text(`Size: ${activeMarkdown.length / 1000} kB`)
+        text(`Size: ${activeMarkdown.length} chars`)
       ]),
       div([
-        text(`Compressed: ${compressedMarkdown.length / 1000} kB`)
-      ]),
-      div([
-        text(`Link: ${copyLink.length / 1000} kB`)
+        text(`Link: ${copyLink.length} chars`)
       ]),
       button({
         onclick: () => {

@@ -105,6 +105,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 .editor-main {
   display: grid;
   grid: 50% 50% / 1fr;
+  min-height: 100%; // why does this work but height doesn't?
 }
 
 .editor-textarea {
@@ -122,44 +123,11 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
   overflow: auto;
 }
 
-// .editor-address {
-//   display: flex;
-//   margin: 0 0 24px;
-
-//   button,
-//   input {
-//     border-radius: 6px;
-//     font: 14px/40px $font-inter;
-//   }
-
-//   button {
-//     padding: 0 18px;
-//     background: $pastel-blue;
-//   }
-
-//   input {
-//     flex: 1;
-//     margin: 0 6px 0 0;
-//     padding: 0 0 0 18px;
-//     background: $dark-300;
-//   }
-// }
-
 .editor-status {
   grid-column: span 2;
   display: flex;
+  padding: 0 12px;
   font: 12px/24px $font-inter;
-  // background: blue;
-
-  &,
-  > button,
-  > div {
-    padding: 0 12px;
-
-    &:first-child {
-      margin: 0 0 0 auto;
-    }
-  }
 
   > button {
     padding: 0 12px 0 (12px + 18px + 3px);
@@ -168,6 +136,18 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
     &:hover {
       background-color: $dark-300;
+    }
+  }
+
+  > div {
+    padding: 0 12px;
+
+    &:first-child {
+      margin: 0 0 0 auto;
+    }
+
+    &.-red {
+      background: $pastel-red;
     }
   }
 }
