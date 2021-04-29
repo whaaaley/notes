@@ -2,6 +2,8 @@
 $icon-format-bold: ic-format-bold-24px($white);
 $icon-format-italic: ic-format-italic-24px($white);
 
+$icon-share: ic-ios-share-24px($white);
+
 // $icon-format-underline: ic-format-underline-24px($white);
 // $icon-format-strikethrough: ic-format-strikethrough-24px($white);
 
@@ -29,6 +31,11 @@ $icon-format-italic: ic-format-italic-24px($white);
 
     &.-ic-format-italic {
       background-image: url($icon-format-italic);
+    }
+
+    &.-ic-share {
+      margin: 0 0 0 auto;
+      background-image: url($icon-share);
     }
 
     // &.-ic-text-format {

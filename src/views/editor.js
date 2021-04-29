@@ -139,6 +139,12 @@ const Format = data => {
       }
     })
     // button({
+    //   class: '-ic-share',
+    //   onclick: () => {
+    //     // empty for now
+    //   }
+    // })
+    // button({
     //   class: '-ic-format-strikethrough',
     //   onclick: () => {
     //     formatSelection('~~', 2)
@@ -233,48 +239,68 @@ const Editor = (state, dispatch) => {
         ])
       ])
     ]),
-    div({ class: 'editor-textarea' }, [
-      textarea({
-        id: 'foo',
-        ref: foo,
-        key: 'textarea',
-        value: activeMarkdown,
-        onscroll: event => {
-          !scrollLockFoo && scrollSync(event.target, bar.current)
-          scrollLockFoo = false
-        },
-        oninput: event => {
-          dispatch(notes.update, event.target.value)
-        }
-      })
-    ]),
-    div({
-      id: 'bar',
-      ref: bar,
-      key: 'markdown',
-      class: 'editor-markdown',
-      onscroll: event => {
-        !scrollLockBar && scrollSync(event.target, foo.current)
-        scrollLockBar = false
-      }
-    }, [
-      div({ class: 'editor-address' }, [
-        input({
-          type: 'text',
-          value: copyLink
-        }),
-        button({
-          onclick: () => {
-            // returns a promise
-            // TODO: make a div to show text has been copied
-            navigator.clipboard.writeText(copyLink)
+    div({ class: 'editor-main' }, [
+      div({ class: 'editor-textarea' }, [
+        textarea({
+          id: 'foo',
+          ref: foo,
+          key: 'textarea',
+          value: activeMarkdown,
+          onscroll: event => {
+            !scrollLockFoo && scrollSync(event.target, bar.current)
+            scrollLockFoo = false
+          },
+          oninput: event => {
+            dispatch(notes.update, event.target.value)
           }
-        }, [
-          text('Copy Link')
-        ])
+        })
       ]),
-      div({ class: 'markdown' }, [
-        RenderMarkdown(activeMarkdown)
+      div({
+        id: 'bar',
+        ref: bar,
+        key: 'markdown',
+        class: 'editor-markdown',
+        onscroll: event => {
+          !scrollLockBar && scrollSync(event.target, foo.current)
+          scrollLockBar = false
+        }
+      }, [
+        // div({ class: 'editor-address' }, [
+        //   input({
+        //     type: 'text',
+        //     value: copyLink
+        //   }),
+        //   button({
+        //     onclick: () => {
+        //       // returns a promise
+        //       // TODO: make a div to show text has been copied
+        //       navigator.clipboard.writeText(copyLink)
+        //     }
+        //   }, [
+        //     text('Copy Link')
+        //   ])
+        // ]),
+        div({ class: 'markdown' }, [
+          RenderMarkdown(activeMarkdown)
+        ])
+      ])
+    ]),
+    div({ class: 'editor-status' }, [
+      div([
+        text('Ln 281, Col 24')
+      ]),
+      div([
+        text('Size: 24 kB')
+      ]),
+      div([
+        text('Compressed: 24 kB')
+      ]),
+      button({
+        onclick: () => {
+          navigator.clipboard.writeText(copyLink)
+        }
+      }, [
+        text('Copy Link')
       ])
     ])
   ])

@@ -4,7 +4,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
 .editor {
   display: grid;
-  grid: 48px auto 1fr 1fr / 320px 1fr;
+  grid: 48px 48px 1fr 24px / 320px 1fr;
   height: 100vh;
 }
 
@@ -43,14 +43,15 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 }
 
 .editor-sidebar {
-  grid-row: span 2;
   display: grid;
   grid: 1fr/100%;
   background: $dark-450;
 }
 
 .editor-footer {
-  padding: 24px;
+  margin: 12px;
+  padding: 18px 24px;
+  border-radius: 12px;
   text-align: center;
   white-space: pre;
   background: $dark-500;
@@ -66,7 +67,8 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
   }
 }
 
-.editor-textarea textarea, .editor-markdown {
+.editor-textarea textarea,
+.editor-markdown {
   padding: 24px;
 }
 
@@ -100,6 +102,11 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 
 // .editor-ribbon {}
 
+.editor-main {
+  display: grid;
+  grid: 50% 50% / 1fr;
+}
+
 .editor-textarea {
   textarea {
     width: 100%;
@@ -111,53 +118,65 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
   }
 }
 
-.editor-middle {
-  grid-column: 2;
-  background: $pastel-blue;
-}
-
 .editor-markdown {
   overflow: auto;
 }
 
-.editor-address {
+// .editor-address {
+//   display: flex;
+//   margin: 0 0 24px;
+
+//   button,
+//   input {
+//     border-radius: 6px;
+//     font: 14px/40px $font-inter;
+//   }
+
+//   button {
+//     padding: 0 18px;
+//     background: $pastel-blue;
+//   }
+
+//   input {
+//     flex: 1;
+//     margin: 0 6px 0 0;
+//     padding: 0 0 0 18px;
+//     background: $dark-300;
+//   }
+// }
+
+.editor-status {
+  grid-column: span 2;
   display: flex;
-  margin: 0 0 24px;
+  font: 12px/24px $font-inter;
+  // background: blue;
 
-  button, input {
-    border-radius: 6px;
-    font: 14px/40px $font-inter;
+  &,
+  > button,
+  > div {
+    padding: 0 12px;
+
+    &:first-child {
+      margin: 0 0 0 auto;
+    }
   }
 
-  button {
-    padding: 0 18px;
-    background: $pastel-blue;
-  }
+  > button {
+    padding: 0 12px 0 (12px + 18px + 3px);
+    background: url(ic-copy-18px($white)) 12px no-repeat;
+    cursor: pointer;
 
-  input {
-    flex: 1;
-    margin: 0 6px 0 0;
-    padding: 0 0 0 18px;
-    background: $dark-300;
+    &:hover {
+      background-color: $dark-300;
+    }
   }
 }
 
 // Desktop
 
 @media (min-width: 1400px) {
-  .editor {
-    grid: 48px auto 1fr / 320px 1fr 1fr;
-  }
-
-  .editor-ribbon {
-    grid-column: span 2;
-  }
-
-  .editor-titlebar {
-    grid-column: span 3;
-  }
-
-  .editor-sidebar {
-    grid-row: span 1;
+  .editor-main {
+    display: grid;
+    grid: 1fr / 50% 50%;
   }
 }
