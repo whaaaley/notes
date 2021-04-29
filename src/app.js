@@ -2,6 +2,8 @@
 import app from './lib/pocket'
 import * as notes from './actions/notes'
 
+import * as subs from './subscriptions'
+
 import Home from './views/home'
 import Editor from './views/editor'
 import Missing from './views/missing'
@@ -30,6 +32,8 @@ const dispatch = app({
 })
 
 dispatch(notes.restore)
+
+subs.gtm('GTM-KJC3N85')
 
 // Google Tag Manager
 window.dataLayer = window.dataLayer || []
