@@ -286,14 +286,17 @@ const Editor = (state, dispatch) => {
       ])
     ]),
     div({ class: 'editor-status' }, [
+      // div([
+      //   text('Ln 281, Col 24')
+      // ]),
       div([
-        text('Ln 281, Col 24')
+        text(`Size: ${activeMarkdown.length / 1000} kB`)
       ]),
       div([
-        text('Size: 24 kB')
+        text(`Compressed: ${compressedMarkdown.length / 1000} kB`)
       ]),
       div([
-        text('Compressed: 24 kB')
+        text(`Link: ${copyLink.length / 1000} kB`)
       ]),
       button({
         onclick: () => {
