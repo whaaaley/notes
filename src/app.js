@@ -33,7 +33,7 @@ const dispatch = app({
 
 dispatch(notes.restore)
 
-subs.gtm('GTM-KJC3N85')
+subs.gtm({ id: 'GTM-KJC3N85' })
 
 // Google Tag Manager
 window.dataLayer = window.dataLayer || []
