@@ -1,7 +1,10 @@
 
-import { div } from '../lib/vnodes/html'
+import { html } from '@onclick/superstatic'
+
 import * as urlSafeCompress from '../util/urlSafeCompress'
 import RenderMarkdown from './_renderMarkdown'
+
+const { div } = html
 
 const Note = (state, dispatch) => {
   const markdown = urlSafeCompress.unzip(state.router.query.data)
@@ -14,6 +17,5 @@ const Note = (state, dispatch) => {
 }
 
 export default {
-  view: Note,
-  onroute: () => {}
+  view: Note
 }

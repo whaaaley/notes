@@ -1,6 +1,8 @@
 
-import { div } from '../lib/vnodes/html'
+import { html } from '@onclick/superstatic'
 import Link from './_link'
+
+const { div } = html
 
 const Home = (state, dispatch) => {
   return div({ class: 'home' }, [
@@ -12,8 +14,5 @@ const Home = (state, dispatch) => {
 }
 
 export default {
-  view: Home,
-  onroute: () => {
-    console.log('hello from home')
-  }
+  view: Home
 }

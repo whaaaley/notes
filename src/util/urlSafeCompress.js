@@ -12,7 +12,7 @@ const toBuffer = data => {
 }
 
 export const zip = data => {
-  data = pako.deflate(data) // String => Uint8Array
+  data = pako.deflateRaw(data) // String => Uint8Array
   data = String.fromCharCode.apply(null, data) // Uint8Array => String
 
   return window.btoa(data) // Uint8Array => base64
@@ -21,7 +21,7 @@ export const zip = data => {
 export const unzip = data => {
   data = window.atob(data) // base64 => String
   data = toBuffer(data) // String => Uint8Array
-  data = pako.inflate(data) // Uint8Array => Uint8Array
+  data = pako.inflateRaw(data) // Uint8Array => Uint8Array
 
   return String.fromCharCode.apply(null, data) // Uint8Array => String
 }

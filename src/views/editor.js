@@ -1,11 +1,14 @@
 
-import { button, div, h1, p, span, text, textarea } from '../lib/vnodes/html'
+import { html, text } from '@onclick/superstatic'
+// import { button, div, h1, p, span, text, textarea } from '../lib/vnodes/html'
 
 import * as urlSafeCompress from '../util/urlSafeCompress'
 import * as notes from '../actions/notes'
 
 import Link from './_link'
 import RenderMarkdown from './_renderMarkdown'
+
+const { button, div, h1, p, span, textarea } = html
 
 //
 //
@@ -170,8 +173,8 @@ const Format = data => {
 }
 
 const Editor = (state, dispatch) => {
-  const foo = { current: null }
-  const bar = { current: null }
+  const foo = { vnode: null }
+  const bar = { vnode: null }
 
   const activeMarkdown = state.notes[state.activeNote].markdown
   const copyLink = location.origin + '/note?data=' + urlSafeCompress.zip(activeMarkdown)
@@ -240,32 +243,34 @@ const Editor = (state, dispatch) => {
     ]),
     div({ class: 'editor-main' }, [
       div({ class: 'editor-textarea' }, [
-        textarea({
-          id: 'foo',
-          ref: foo,
-          key: 'textarea',
-          value: activeMarkdown,
-          onscroll: event => {
-            !scrollLockFoo && scrollSync(event.target, bar.current)
-            scrollLockFoo = false
-          },
-          oninput: event => {
-            dispatch(notes.update, event.target.value)
-          }
-        })
+        (
+          foo.vnode = textarea({
+            id: 'foo',
+            key: 'textarea',
+            value: activeMarkdown,
+            onscroll: event => {
+              !scrollLockFoo && scrollSync(event.target, bar.vnode.node)
+              scrollLockFoo = false
+            },
+            oninput: event => {
+              dispatch(notes.update, event.target.value)
+            }
+          })
+        )
       ]),
-      div({
-        id: 'bar',
-        ref: bar,
-        key: 'markdown',
-        class: 'editor-markdown markdown',
-        onscroll: event => {
-          !scrollLockBar && scrollSync(event.target, foo.current)
-          scrollLockBar = false
-        }
-      }, [
-        RenderMarkdown(activeMarkdown)
-      ])
+      (
+        bar.vnode = div({
+          id: 'bar',
+          key: 'markdown',
+          class: 'editor-markdown markdown',
+          onscroll: event => {
+            !scrollLockBar && scrollSync(event.target, foo.vnode.node)
+            scrollLockBar = false
+          }
+        }, [
+          RenderMarkdown(activeMarkdown)
+        ])
+      )
     ]),
     div({ class: 'editor-status' }, [
       (() => {
@@ -294,8 +299,5 @@ const Editor = (state, dispatch) => {
 }
 
 export default {
-  view: Editor,
-  onroute: () => {
-    console.log('hello from editor')
-  }
+  view: Editor
 }

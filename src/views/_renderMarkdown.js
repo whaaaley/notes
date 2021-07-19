@@ -1,9 +1,9 @@
 
-import { h, text } from '../lib/vnodes/h'
+import { h, text } from '@onclick/superstatic'
 
-import fromMarkdown from 'mdast-util-from-markdown'
-import toHast from 'mdast-util-to-hast'
-import toHyperscript from 'hast-to-hyperscript'
+import { fromMarkdown } from 'mdast-util-from-markdown'
+import { toHast } from 'mdast-util-to-hast'
+import { toH } from 'hast-to-hyperscript'
 
 const hfn = (tag, props, children) => {
   const node = h(tag)(props, children)
@@ -21,5 +21,5 @@ const hfn = (tag, props, children) => {
 }
 
 export default data => {
-  return toHyperscript(hfn, toHast(fromMarkdown(data)))
+  return toH(hfn, toHast(fromMarkdown(data)))
 }

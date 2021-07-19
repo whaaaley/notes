@@ -1,6 +1,8 @@
 
-import link from '../lib/routerLink'
-import { a, text } from '../lib/vnodes/html'
+import { link } from '@onclick/pocket'
+import { html, text } from '@onclick/superstatic'
+
+const { a } = html
 
 export default (data, content) => {
   const props = {

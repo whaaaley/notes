@@ -10,12 +10,15 @@ const CleanCSS = require('clean-css')
 const config = require('./config')
 
 const [,, fn, entry] = process.argv
-const PROD = process.env.NODE_ENV === 'production'
+const production = process.env.NODE_ENV === 'production'
 
 function css () {
-  let data = sass.renderSync({ file: entry, ...config.sass }).css
+  let data = sass.renderSync({
+    ...config.sass,
+    file: entry
+  }).css
 
-  data = PROD === true
+  data = production === true
     ? new CleanCSS(config.cleancss).minify(data).styles
     : Buffer.from(data).toString()
 
@@ -24,8 +27,8 @@ function css () {
 
 function html () {
   let data = esbuild.buildSync({
-    entryPoints: [entry],
-    ...config.esbuild.html
+    ...config.esbuild_static,
+    entryPoints: [entry]
   })
 
   data = data.outputFiles[0].contents.buffer
@@ -36,14 +39,14 @@ function html () {
 
 function js () {
   let data = esbuild.buildSync({
-    entryPoints: [entry],
-    ...config.esbuild.js
+    ...config.esbuild,
+    entryPoints: [entry]
   })
 
   data = data.outputFiles[0].contents.buffer
   data = Buffer.from(data).toString()
 
-  if (PROD === true) {
+  if (production === true) {
     data = typescript.transpileModule(data, config.typescript)
     data = uglify.minify(data.outputText, config.uglify).code
   }

@@ -9,14 +9,16 @@ function reload () {
 }
 
 function handler (res) {
-  res.setHeader('content-type', 'text/event-stream')
-
   const id = crypto.randomBytes(6).toString('hex')
 
-  clients.set(id, res)
+  res.setHeader('content-type', 'text/event-stream')
   res.write('data:connect\n\n')
 
-  const heartbeat = setInterval(function () { res.write(':\n\n') }, 90000)
+  clients.set(id, res)
+
+  const heartbeat = setInterval(function () {
+    res.write(':\n\n')
+  }, 90000)
 
   res.on('aborted', function () {
     clearInterval(heartbeat)

@@ -11,9 +11,9 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
 .editor-titlebar {
   grid-column: span 2;
   display: flex;
+  background: $primary;
   color: $dark-500;
   letter-spacing: 0 - (1 / 24 * 1em);
-  background: $primary;
 
   a {
     background: $dark-450 url('/cache/logo.svg') center/24px no-repeat;
@@ -113,7 +113,7 @@ $icon-back: ic-arrow-back-ios-new-24px($white);
     width: 100%;
     height: 100%;
     outline: none;
-    font: 400 16px/24px monospace;
+    font: 13px/24px $font-mono;
     background: $dark-400;
     resize: none;
   }

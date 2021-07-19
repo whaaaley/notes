@@ -1,5 +1,7 @@
 
-import { div, text } from '../lib/vnodes/html'
+import { html, text } from '@onclick/superstatic'
+
+const { div } = html
 
 const Missing = (state, dispatch) => {
   return div({ class: 'missing' }, [
@@ -10,6 +12,5 @@ const Missing = (state, dispatch) => {
 }
 
 export default {
-  view: Missing,
-  onroute: () => {}
+  view: Missing
 }

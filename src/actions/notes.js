@@ -1,6 +1,7 @@
 
-const persist = data =>
+const persist = data => {
   localStorage.setItem('notes', JSON.stringify(data))
+}
 
 export const create = state => {
   const length = state.notes.length
